@@ -2,8 +2,8 @@ const express = require('express')
 const routes = express.Router()
 const OngController = require('./controllers/OngController')
 const IncidentController = require('./controllers/IncidentController')
-const ProfileController = require('./controllers/ProfileConroller')
-const SessionsController = require('./controllers/SessionConroller')
+const ProfileController = require('./controllers/ProfileController')
+const SessionsController = require('./controllers/SessionController')
 
 routes.post('/sessions', SessionsController.store)
 
