@@ -26,7 +26,18 @@ function Profile() {
       fetchIncidents()
     }, [ongID])
 
-    
+    async function handleDeleteIncident(id) {
+      try {
+        await api.delete(`incidents/${id}`, {
+          headers: { 
+            Authorization: ongID
+          }
+        })
+        setIncidents(incidents.filter(incident => incident.id !== id))
+      } catch (error) {
+        alert('Error a deleting incident, try again')
+      }
+    }
   
 
     return (
@@ -45,7 +56,6 @@ function Profile() {
           </header>
           <h1>Incidents registered </h1>
 
-
           <ul>
             {incidents.map(incident =>(
               <li key={incident.id}>
@@ -58,7 +68,7 @@ function Profile() {
               <strong>Value: </strong>
               <p>{ Intl.NumberFormat('de', { style : 'currency', currency:'EUR'}).format(incident.value)}</p>
 
-              <button type="button">
+              <button type="button" onClick={()=> handleDeleteIncident(incident.id)}>
                 <FiTrash size={16}  color="#a8a8b3"/>
               </button>
 
