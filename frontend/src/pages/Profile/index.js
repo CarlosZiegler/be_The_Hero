@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { FiPower, FiTrash } from 'react-icons/fi';
 
 import api from '../../services/api'
@@ -10,6 +10,7 @@ import logoImg from '../../assets/logo.svg'
 function Profile() {
 
     const [incidents, setIncidents] = useState([])
+    const history = useHistory()
 
     const ongName = localStorage.getItem('ongName')
     const ongID = localStorage.getItem('ongId')
@@ -38,6 +39,11 @@ function Profile() {
         alert('Error a deleting incident, try again')
       }
     }
+
+    function handleLogout() {
+      localStorage.clear()
+      history.push('/')
+    }
   
 
     return (
@@ -50,7 +56,7 @@ function Profile() {
               Create a new Incident
             </Link>
 
-            <button type="button" > 
+            <button type="button" onClick={handleLogout}> 
               <FiPower size={16}  color="#e02041"/>
             </button>
           </header>
