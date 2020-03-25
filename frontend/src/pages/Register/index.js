@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
-import axios from 'axios';
+import {Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api'
@@ -16,10 +15,11 @@ function Register() {
     const [city, setCity] = useState('')
     const [uf, setUF] = useState('')
 
-    
+    const history = useHistory()
 
     async function handleRegister(e) {
        e.preventDefault()
+       
        const data = {
             name,
             email,
@@ -32,6 +32,7 @@ function Register() {
         try {
             const response = await api.post('/ongs', data)
             alert(`Your access ID : ${response.data.id}`)
+            history.push('/')
 
         } catch (error) {
             alert(`Error for register, try again`)
