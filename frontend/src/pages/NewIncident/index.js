@@ -7,26 +7,23 @@ import logoImg from '../../assets/logo.svg'
 
 function NewIncident() {
     return (
-       <div className="register-container">
+       <div className="new-incident-container">
           <div className="content">
               <section>
                 <img src={logoImg} alt="Logo"/>
                 <h1>Add new Incident</h1>
-                <p> Make your registration, enter the platform and help people find the cases of your NGO </p>
-                <Link className="back-link" to="/">
+                <p> Describe in detail to find a hero to solve this </p>
+                <Link className="back-link" to="/profile">
                        <FiArrowLeft size={16}  color="#e02041"/>
-                       Register
+                       Back to Home
                 </Link>
               </section>
               <form>
-                <input type="text" placeholder="NGO Name"/>
-                <input type="email" placeholder="Email"/>
-                <input type="text" placeholder="Whatsapp"/>
-                <div className="input-group">
-                    <input type="text" placeholder="City"/>
-                    <input type="text" placeholder="UF" style={{width:80}}/>
-                </div>
+                <input type="text" placeholder="Title"/>
+                <textarea  placeholder="Description"/>
+                <input type="text" placeholder="Value"/>
 
+                <button className="button" type="submit">Cancel</button>
                 <button className="button" type="submit">Register</button>
                 
               </form>
