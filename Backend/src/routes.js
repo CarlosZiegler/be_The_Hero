@@ -7,8 +7,8 @@ const SessionsController = require('./controllers/SessionController')
 
 routes.post('/sessions', SessionsController.store)
 
-routes.post('/users', OngController.store)
-routes.get('/users', OngController.index)
+routes.post('/ongs', OngController.store)
+routes.get('/ongs', OngController.index)
 
 routes.get('/profile', ProfileController.index)
 
