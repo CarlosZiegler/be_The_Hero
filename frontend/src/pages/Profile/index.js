@@ -6,6 +6,7 @@ import api from '../../services/api'
 
 import './styles.css'
 import logoImg from '../../assets/logo.svg'
+import emptyImg from '../../assets/emptyB.png'
 
 function Profile() {
 
@@ -50,18 +51,27 @@ function Profile() {
        <div className="profile-container">
           <header className="">
             <img src={logoImg} alt="Logo"/>
-            <span className="">Bem Vindo, {ongName}</span>
+            <span className="">Welcome, {ongName}</span>
             
             <Link className="button" to="/incidents/new">
-              Create a new Incident
+              Add incident
             </Link>
 
             <button type="button" onClick={handleLogout}> 
               <FiPower size={16}  color="#e02041"/>
             </button>
           </header>
-          <h1>Incidents registered </h1>
-
+          {incidents.length > 0 && (<>
+            <h1>Incidents registered </h1>
+        </>)}
+          
+          {incidents.length < 1 && (<>
+          <center>
+          <h1>You have not incidents registered. </h1>
+            <img src={emptyImg} style={{width: '50%'}} alt="Logo"/>
+          </center>
+          
+        </>)}
           <ul>
             {incidents.map(incident =>(
               <li key={incident.id}>

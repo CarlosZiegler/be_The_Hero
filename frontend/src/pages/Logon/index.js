@@ -1,6 +1,8 @@
-import React , { useState}from 'react';
+import React , { useState}from 'react'
 import {Link , useHistory} from 'react-router-dom'
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn } from 'react-icons/fi'
+
+
 import api from '../../services/api'
 import './styles.css'
 
@@ -17,7 +19,6 @@ function Login() {
         e.preventDefault()
         try {
             const response = await api.post('sessions', {id})
-
             localStorage.setItem('ongId', id)
             localStorage.setItem('ongName',response.data.name)
 
@@ -47,6 +48,7 @@ function Login() {
                </form>
            </section>
            <img src={heroesImg} alt="Heroes" />
+           
        </div> 
     );
 }
