@@ -12,7 +12,7 @@ routes.post('/sessions', celebrate({
     [Segments.BODY] : Joi.object().keys({
         id: Joi.string().required(),
     })
-})  , SessionsController.store)
+}), SessionsController.store)
 
 routes.get('/ongs', OngController.index)
 
