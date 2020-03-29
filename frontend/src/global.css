@@ -60,6 +60,9 @@ form textarea{
 .button:hover{
     filter:brightness(90%)
 }
+.button:disabled{
+    background: #dddddd;
+}
 
 .back-link{
     display:flex;

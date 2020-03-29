@@ -51,7 +51,10 @@ function Profile() {
           <header className="">
             <img src={logoImg} alt="Logo"/>
             <span className="">Welcome, {ongName}</span>
-            
+            <Link className="button" to="/changePassword">
+              Change Password
+            </Link>
+
             <Link className="button" to="/incidents/new">
               Add incident
             </Link>

@@ -9,29 +9,33 @@ import heroesImg from '../../assets/heroes.png'
 import logoImg from '../../assets/logo.svg'
 
 
-function PasswordForgetFormBase(props) {
+function PasswordChangeFormBase(props) {
 
-    const [email, setEmail] = useState('')
+    const [passwordOne, setPasswordOne] = useState('')
+    const [passwordTwo, setPasswordTwo] = useState('')
     const [error, setError] = useState('')
 
-    const isInvalid = email === '';
-
+    const isInvalid =
+      passwordOne !== passwordTwo ||
+      passwordOne === ''
+      
     const history = useHistory()
 
-    async function handlePasswordRcovery(e) {
+    async function handlePasswordRecovery(e) {
         e.preventDefault()
         const { firebase } = props
         
         try {
-            await firebase.doPasswordReset(email)
+            await firebase.doPasswordUpdate(passwordOne)
             try {
-                alert(`We are forwarding an email for ${email} to reset your password. Check your inbox. Thanks`)
-                history.push('/')
+                alert(`Your password has been updated successfully.`)
+                history.push('/profile')
             } catch (error) {
                 setError(error)
                 
             }
         } catch (error) {
+            alert(error)
             setError(error)
         }
     }
@@ -40,20 +44,29 @@ function PasswordForgetFormBase(props) {
         <div className="logon-container">
             <section className="form">
                 <img src={logoImg} alt="Logo" />
-                <form onSubmit={handlePasswordRcovery} >
+                <form onSubmit={handlePasswordRecovery} >
                     <h1> Reset your password. </h1>
                     <input
-                        type="email"
-                        placeholder="Your Email" 
-                        value={email} 
-                        onChange={e => setEmail(e.currentTarget.value)} />
+                    name="passwordOne"
+                    value={passwordOne}
+                    onChange={e => {setPasswordOne(e.target.value)}}
+                    type="password"
+                    placeholder="Password"
+                    />
+                    <input
+                    name="passwordTwo"
+                    value={passwordTwo}
+                    onChange={e => {setPasswordTwo(e.target.value)}}
+                    type="password"
+                    placeholder="Confirm Password"
+                    />
                     <button
                         className="button"
                         disabled={isInvalid}
                         type="submit" > Send </button>
                     {error && <p>{error.message}</p>}
                 </form>
-                <Link className="back-link" to="/">
+                <Link className="back-link" to="/profile">
                        <FiArrowLeft size={16}  color="#e02041"/>
                        Back to Home
                 </Link>
@@ -65,12 +78,12 @@ function PasswordForgetFormBase(props) {
     );
 }
 
-const PasswordForgetPage = () => (
+const PasswordChangePage = () => (
     <div>
         <FirebaseContext.Consumer>
-            {firebase => <PasswordForgetFormBase firebase={firebase} />}
+            {firebase => <PasswordChangeFormBase firebase={firebase} />}
         </FirebaseContext.Consumer>
     </div>
 );
 
-export default PasswordForgetPage;
+export default PasswordChangePage;
