@@ -16,6 +16,7 @@ function Profile() {
     const ongName = localStorage.getItem('ongName')
     const ongID = localStorage.getItem('ongId')
     
+    
     useEffect(() => {
       async function fetchIncidents(){
         const response = await api.get('/profile', {

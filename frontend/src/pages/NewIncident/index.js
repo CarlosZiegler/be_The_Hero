@@ -26,19 +26,22 @@ function NewIncident() {
       description,
       value
     }
+    console.log(data)
 
     try {
-      await api.post('incidents',data, {
+      const result = await api.post('incidents',data, {
         headers: {
           Authorization:ongID
         }
       })
+      console.log(result)
 
       history.push('/profile')
 
     } catch (error) {
       alert('Error occurred during adding incident')
     }
+    
   }
 
     return (
