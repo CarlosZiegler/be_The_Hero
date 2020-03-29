@@ -30,8 +30,6 @@ function RegisterForm(props) {
     async function handleRegister(e) {
         e.preventDefault()
 
-        
-        
         try {
             const {firebase} = props
             const result = await firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -53,9 +51,6 @@ function RegisterForm(props) {
             } catch (err) {
                 setError(err)
             }
-
-            
-            
 
         } catch (err) {
             setError(err)
@@ -87,7 +82,7 @@ function RegisterForm(props) {
                     type="email" 
                     placeholder="Email" 
                     value={email} 
-                    onChange={e => {setEmail(e.target.value)}}
+                    onChange={e => {setEmail(e.target.value.toLowerCase())}}
                     />
                     <input
                     name="passwordOne"

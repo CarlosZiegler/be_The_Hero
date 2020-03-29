@@ -7,11 +7,13 @@ import api from '../../services/api'
 import './styles.css'
 import logoImg from '../../assets/logo.svg'
 
-const ongID = localStorage.getItem('ongId')
+
+
 
 
 function NewIncident() {
-
+  const ongId = localStorage.getItem('ongId')
+  console.log(ongId)
   const history = useHistory()
 
   const [title, setTitle] = useState('')
@@ -29,12 +31,12 @@ function NewIncident() {
     console.log(data)
 
     try {
-      const result = await api.post('incidents',data, {
+      await api.post('incidents',data, {
         headers: {
-          Authorization:ongID
+          Authorization:ongId
         }
       })
-      console.log(result)
+      
 
       history.push('/profile')
 

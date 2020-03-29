@@ -14,26 +14,25 @@ function Profile() {
     const history = useHistory()
 
     const ongName = localStorage.getItem('ongName')
-    const ongID = localStorage.getItem('ongId')
-    
+    const ongId = localStorage.getItem('ongId')
     
     useEffect(() => {
       async function fetchIncidents(){
         const response = await api.get('/profile', {
           headers:{
-            Authorization:ongID
+            Authorization:ongId
           }
         })
         setIncidents(response.data)
       }
       fetchIncidents()
-    }, [ongID])
+    }, [ongId])
 
     async function handleDeleteIncident(id) {
       try {
         await api.delete(`incidents/${id}`, {
           headers: { 
-            Authorization: ongID
+            Authorization: ongId
           }
         })
         setIncidents(incidents.filter(incident => incident.id !== id))
@@ -91,9 +90,7 @@ function Profile() {
 
             </li>
             ))}
-            
 
-            
           </ul>
 
        </div> 

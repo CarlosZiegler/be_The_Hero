@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
 
-
 import api from '../../services/api'
 import { FirebaseContext } from '../../components/Firebase';
 import './styles.css'
@@ -22,26 +21,22 @@ function Login(props) {
         e.preventDefault()
         const { firebase } = props
         
-
         try {
             await firebase.doSignInWithEmailAndPassword(email, password)
             try {
                 const response = await api.post('sessions', { email })
+                localStorage.clear()
                 localStorage.setItem('ongId', response.data.id)
                 localStorage.setItem('ongName', response.data.name)
 
                 history.push('/profile')
             } catch (error) {
-                console.log(error)
-                alert('ID not exists, try again!')
+                setError(error)
                 
             }
         } catch (error) {
             setError(error)
         }
-        
-
-
     }
 
     return (
