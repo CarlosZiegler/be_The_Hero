@@ -5,6 +5,7 @@ import SigInPage from './pages/SigInPage'
 import SignUpPage from './pages/SignUpPage'
 import Profile from './pages/Profile'
 import NewIncident from './pages/NewIncident'
+import PasswordForgetPage from './pages/PasswordForget'
 
 export default function Routes(){
     return (
@@ -13,6 +14,7 @@ export default function Routes(){
                 <Route path="/" exact component={SigInPage} />
                 <Route path="/register" component={SignUpPage} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/resetPassword" component={PasswordForgetPage} />
                 <Route path="/incidents/new" component={NewIncident} />
             </Switch>
         </BrowserRouter>

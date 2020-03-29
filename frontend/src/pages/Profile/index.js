@@ -46,7 +46,6 @@ function Profile() {
       history.push('/')
     }
   
-
     return (
        <div className="profile-container">
           <header className="">

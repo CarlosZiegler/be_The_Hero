@@ -57,7 +57,11 @@ function Login(props) {
                     {error && <p>{error.message}</p>}
                     <Link className="back-link" to="/register">
                         <FiLogIn size={16} color="#e02041" />
-                       Register
+                    Register
+                   </Link>
+                   <Link className="password" to="/resetPassword" >
+                        <FiLogIn size={16} color="#e02041" />
+                        Forgot password?
                    </Link>
                 </form>
                 

@@ -8,12 +8,9 @@ import './styles.css'
 import logoImg from '../../assets/logo.svg'
 
 
-
-
-
 function NewIncident() {
   const ongId = localStorage.getItem('ongId')
-  console.log(ongId)
+  
   const history = useHistory()
 
   const [title, setTitle] = useState('')
@@ -28,8 +25,7 @@ function NewIncident() {
       description,
       value
     }
-    console.log(data)
-
+    
     try {
       await api.post('incidents',data, {
         headers: {
