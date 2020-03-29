@@ -68,8 +68,8 @@ function NewIncident() {
                 />
                 <input 
                   type="text" 
-                  placeholder="Value"
-                  value={value}
+                  placeholder="Value in €"
+                  value={ Intl.NumberFormat('de', { style : 'currency', currency:'EUR'}).format(value)}
                   onChange={e => {setValue(e.target.value)}}
                 />
                 
