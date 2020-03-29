@@ -48,6 +48,9 @@ function Profile() {
   
     return (
        <div className="profile-container">
+         {/* {ongId === null && (<>
+            {history.push('/')} }
+        </>)} */}
           <header className="">
             <img src={logoImg} alt="Logo"/>
             <span className="">Welcome, {ongName}</span>
