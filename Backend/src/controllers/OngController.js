@@ -4,9 +4,9 @@ const generateUniqueId = require('../utils/generateUniqueID')
 
 module.exports={
     async store( req, res) {
-        const { name, email, whatsapp, city, uf } = req.body
-
-        const id = generateUniqueId()
+        const { id, name, email, whatsapp, city, uf } = req.body
+        console.log(req.body)
+        //const id = generateUniqueId()
 
         await connection('ongs').insert({
             id,

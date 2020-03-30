@@ -10,7 +10,7 @@ const routes = express.Router()
 
 routes.post('/sessions', celebrate({
     [Segments.BODY] : Joi.object().keys({
-        id: Joi.string().required(),
+        email: Joi.string().required().email(),
     })
 }), SessionsController.store)
 
@@ -18,6 +18,7 @@ routes.get('/ongs', OngController.index)
 
 routes.post('/ongs', celebrate({
     [Segments.BODY] : Joi.object().keys({
+        id: Joi.string(),
         name: Joi.string().required(),
         email: Joi.string().required().email(),
         whatsapp: Joi.string().required(),
@@ -36,7 +37,7 @@ routes.post('/incidents', celebrate({
     [Segments.BODY] : Joi.object().keys({
         title: Joi.string().required(),
         description: Joi.string().required(),
-        value: Joi.number().required(),
+        value: Joi.string().required(),
     }),
     [Segments.HEADERS]: Joi.object({
         authorization: Joi.string().required()

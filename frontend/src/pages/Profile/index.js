@@ -14,25 +14,25 @@ function Profile() {
     const history = useHistory()
 
     const ongName = localStorage.getItem('ongName')
-    const ongID = localStorage.getItem('ongId')
+    const ongId = localStorage.getItem('ongId')
     
     useEffect(() => {
       async function fetchIncidents(){
         const response = await api.get('/profile', {
           headers:{
-            Authorization:ongID
+            Authorization:ongId
           }
         })
         setIncidents(response.data)
       }
       fetchIncidents()
-    }, [ongID])
+    }, [ongId])
 
     async function handleDeleteIncident(id) {
       try {
         await api.delete(`incidents/${id}`, {
           headers: { 
-            Authorization: ongID
+            Authorization: ongId
           }
         })
         setIncidents(incidents.filter(incident => incident.id !== id))
@@ -46,13 +46,18 @@ function Profile() {
       history.push('/')
     }
   
-
     return (
        <div className="profile-container">
+         {/* {ongId === null && (<>
+            {history.push('/')} }
+        </>)} */}
           <header className="">
             <img src={logoImg} alt="Logo"/>
             <span className="">Welcome, {ongName}</span>
-            
+            <Link className="button" to="/changePassword">
+              Change Password
+            </Link>
+
             <Link className="button" to="/incidents/new">
               Add incident
             </Link>
@@ -90,9 +95,7 @@ function Profile() {
 
             </li>
             ))}
-            
 
-            
           </ul>
 
        </div> 

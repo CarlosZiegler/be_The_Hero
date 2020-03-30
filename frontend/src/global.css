@@ -60,6 +60,9 @@ form textarea{
 .button:hover{
     filter:brightness(90%)
 }
+.button:disabled{
+    background: #dddddd;
+}
 
 .back-link{
     display:flex;
@@ -76,4 +79,17 @@ form textarea{
 }
 .back-link:hover{
     opacity: 0.8;
+}
+.password{
+    
+    align-items:center;
+    margin-top: 40px ;
+    color: #41414d;
+    font-size:18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition:0.2s;
+}
+.password svg{
+    margin-right: 8px;
 }

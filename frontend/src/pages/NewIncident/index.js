@@ -1,17 +1,17 @@
 import React , { useState}from 'react';
 import {Link , useHistory} from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
+import NumberFormat from 'react-number-format';
 
 import api from '../../services/api'
 
 import './styles.css'
 import logoImg from '../../assets/logo.svg'
 
-const ongID = localStorage.getItem('ongId')
-
 
 function NewIncident() {
-
+  const ongId = localStorage.getItem('ongId')
+  
   const history = useHistory()
 
   const [title, setTitle] = useState('')
@@ -26,19 +26,20 @@ function NewIncident() {
       description,
       value
     }
-
+    
     try {
       await api.post('incidents',data, {
         headers: {
-          Authorization:ongID
+          Authorization:ongId
         }
       })
-
+      
       history.push('/profile')
 
     } catch (error) {
       alert('Error occurred during adding incident')
     }
+    
   }
 
     return (
@@ -65,15 +66,22 @@ function NewIncident() {
                   value={description}
                   onChange={e => {setDescription(e.target.value)}}
                 />
-                <input 
-                  type="text" 
-                  placeholder="Value"
+                
+                <NumberFormat 
+                  thousandSeparator={true} 
+                  suffix={'€'} 
+                  className="some" 
+                  inputMode="numeric"
                   value={value}
+                  placeholder="0.00 €"
                   onChange={e => {setValue(e.target.value)}}
-                />
+                  displayType={'number'}
+                  decimalSeparator={"."}
+                  />
+                  {console.log(value)}
                 
                 <button className="button" type="submit">Register</button>
-                
+
               </form>
           </div>
        </div> 
