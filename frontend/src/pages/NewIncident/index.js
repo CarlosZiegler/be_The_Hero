@@ -1,6 +1,7 @@
 import React , { useState}from 'react';
 import {Link , useHistory} from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
+import NumberFormat from 'react-number-format';
 
 import api from '../../services/api'
 
@@ -33,7 +34,6 @@ function NewIncident() {
         }
       })
       
-
       history.push('/profile')
 
     } catch (error) {
@@ -66,15 +66,22 @@ function NewIncident() {
                   value={description}
                   onChange={e => {setDescription(e.target.value)}}
                 />
-                <input 
-                  type="text" 
-                  placeholder="Value in €"
-                  value={ Intl.NumberFormat('de', { style : 'currency', currency:'EUR'}).format(value)}
+                
+                <NumberFormat 
+                  thousandSeparator={true} 
+                  suffix={'€'} 
+                  className="some" 
+                  inputMode="numeric"
+                  value={value}
+                  placeholder="0.00 €"
                   onChange={e => {setValue(e.target.value)}}
-                />
+                  displayType={'number'}
+                  decimalSeparator={"."}
+                  />
+                  {console.log(value)}
                 
                 <button className="button" type="submit">Register</button>
-                
+
               </form>
           </div>
        </div> 

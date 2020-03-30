@@ -9,7 +9,7 @@ module.exports={
         const [id] = await connection('incidents').insert({
             title,
             description,
-            value,
+            value:Number(value.replace('€','')),
             ong_id,
         })
 
